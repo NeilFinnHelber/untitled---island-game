@@ -8,35 +8,15 @@ using UnityEngine.UI;
 
 public class cubeButton : MonoBehaviour
 {
+    //to load a gameObject into the class and use it in the code
+    [SerializeField]
+    private GameObject CardManager;
     void OnMouseDown()
     {
         Debug.Log("Cube was clicked!");
-        //CardManager cardManager = new CardManager();
-        //cardManager.DrawCard();
         
-        DrawCard();
-    }
-    public List<Card> deck = new List<Card>();
-    public Transform[] cardSlots;
-    public bool[] availableCardSlots;
-
-    public void DrawCard()
-    {
-        Debug.Log(deck.Count);
-
-
-        Card randCard = deck[Random.Range(0, deck.Count)];
-
-        for (int i = 0; i < availableCardSlots.Length; i++)
-        {
-            if (availableCardSlots[i])
-            {
-                randCard.gameObject.SetActive(true);
-                randCard.transform.position = cardSlots[i].position;
-                availableCardSlots[i] = false;
-                deck.Remove(randCard);
-                return;
-            }
-        }
+        //call a method from this card
+        CardManager.GetComponent<CardManager>().DrawCard();
+        
     }
 }
